@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AlterTableProductsCount extends Migration
+class CreateNewsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,12 @@ class AlterTableProductsCount extends Migration
      */
     public function up()
     {
-        Schema::table('products', function (Blueprint $table) {
-            $table->unsignedInteger('count')->default(0);
+        Schema::create('news', function (Blueprint $table) {
+            $table->id();
+            $table->string('image');
+            $table->string('title');
+            $table->string('desc');
+            $table->timestamps();
         });
     }
 
@@ -25,9 +29,6 @@ class AlterTableProductsCount extends Migration
      */
     public function down()
     {
-        Schema::table('products', function (Blueprint $table) {
-            $table->dropColumn('count');
-            $table->dropColumn('deleted_at');
-        });
+        Schema::dropIfExists('news');
     }
 }

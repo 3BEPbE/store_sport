@@ -13,9 +13,9 @@ class AlterTableProductsDropColumnsCountAndPrice extends Migration
      */
     public function up()
     {
-        Schema::table('products', function (Blueprint $table) {
-            $table->dropColumn(['count', 'price']);
-        });
+//        Schema::table('products', function (Blueprint $table) {
+//            $table->dropColumn(['count', 'price']);
+//        });
     }
 
     /**

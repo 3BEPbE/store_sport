@@ -9,39 +9,49 @@ use App\Models\Currency;
 use App\Models\Product;
 use App\Models\Sku;
 use App\Models\Subscription;
+use App\News;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
 
 class MainController extends Controller
 {
+//    public function index(ProductsFilterRequest $request)
+//    {
+//        $skusQuery = Sku::with(['product', 'product.category']);
+//
+//        if ($request->filled('price_from')) {
+//            $skusQuery->where('price', '>=', $request->price_from);
+//        }
+//
+//        if ($request->filled('price_to')) {
+//            $skusQuery->where('price', '<=', $request->price_to);
+//        }
+//
+//        foreach (['hit', 'new', 'recommend'] as $field) {
+//            if ($request->has($field)) {
+//                $skusQuery->whereHas('product', function ($query) use ($field) {
+//                    $query->$field();
+//                });
+//            }
+//        }
+//
+//        $skus = $skusQuery->paginate(6)->withPath("?".$request->getQueryString());
+//
+//        return view('index', compact('skus'));
+//    }
+
     public function index(ProductsFilterRequest $request)
     {
-        $skusQuery = Sku::with(['product', 'product.category']);
+        $skus = Product::paginate(8);
+        $news = News::orderBy('updated_at', 'desc')->paginate(3);
 
-        if ($request->filled('price_from')) {
-            $skusQuery->where('price', '>=', $request->price_from);
-        }
-
-        if ($request->filled('price_to')) {
-            $skusQuery->where('price', '<=', $request->price_to);
-        }
-
-        foreach (['hit', 'new', 'recommend'] as $field) {
-            if ($request->has($field)) {
-                $skusQuery->whereHas('product', function ($query) use ($field) {
-                    $query->$field();
-                });
-            }
-        }
-
-        $skus = $skusQuery->paginate(6)->withPath("?".$request->getQueryString());
-
-        return view('index', compact('skus'));
+        return view('custom.index', compact('skus', 'news'));
     }
 
     public function categories()
     {
-        return view('categories');
+        $categories = Category::paginate(9);
+        return view('custom.category', compact('categories'));
     }
 
     public function category($code)

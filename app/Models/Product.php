@@ -5,11 +5,10 @@ namespace App\Models;
 use App\Models\Traits\Translatable;
 use App\Services\CurrencyConversion;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Product extends Model
 {
-    use SoftDeletes, Translatable;
+    use Translatable;
 
     protected $fillable = [
         'name', 'code', 'price', 'category_id', 'description', 'image', 'hit', 'new', 'recommend', 'count', 'name_en',

@@ -6,12 +6,12 @@
     <div class="container">
         <div class="row header__content__wrapper">
             <div class="col-md-4">
-                <a href="#" class="logo__text">
+                <a href="{{ route('index') }}" class="logo__text">
                     WHEY SPORT
                 </a>
             </div>
             <div class="col-md-4 link__header__wrapper">
-                    <a href="#">Продукция</a>
+                    <a href="{{ route('items.index') }}">Продукция</a>
                     <a href="#">Доставка</a>
                     <a href="#">Контакты</a>
             </div>
@@ -27,7 +27,7 @@
 
 <div class="row wrapper__second__column">
     <div class="col-md-3 orange__button__wrapper">
-        <a class="btn orange__button">
+        <a href="{{ route('categories') }}" class="btn orange__button">
             Категории
         </a>
     </div>
@@ -118,98 +118,108 @@
                 <h2>Хит продаж</h2>
             </div>
 
-            <div class="col-md-3 mb-2">
-                <div class="column">
-                    <div class="product__wrapper py-2">
-                        <img src="{{ asset('images/product/1.png') }}" alt="">
-                        <p>Optimum Nutrition, Gold Standard 100% Whey</p>
-                        <h4 class="product__price">
-                            156 250 сум
-                            <img src="{{ asset('images/product/save.svg') }}" alt="">
-                        </h4>
-                    </div>
-                </div>
-            </div>
+            @foreach($skus as $item)
+                <div class="col-md-3 mb-2">
+                    <div class="column">
+                        <div class="product__wrapper py-2">
+                            <img src="{{ asset('images/product/1.png') }}" alt="">
+                            <p>{{ $item->name }}</p>
+                            <h4 class="product__price">
+                                {{ $item->price }} сум
+                            </h4>
+                            @if($item->count > 0)
+                                <form action="{{ route('basket-add', $item) }}" method="post">
+                                    @csrf
 
-            <div class="col-md-3 mb-2">
-                <div class="column">
-                    <div class="product__wrapper py-2">
-                        <img src="{{ asset('images/product/1.png') }}" alt="">
-                        <p>Optimum Nutrition, Gold Standard 100% Whey</p>
-                        <h4 class="product__price">
-                            156 250 сум
-                            <img src="{{ asset('images/product/save.svg') }}" alt="">
-                        </h4>
-                    </div>
-                </div>
-            </div>
+                                    <button type="submit" class="btn btn-info" style="background-color: rgba(255, 92, 41, 1); color: white">
+                                        Добавить в корзину
+                                    </button>
+                                </form>
+                            @else
+                                <img src="{{ asset('images/product/save.svg') }}" alt="">
+                            @endif
 
-            <div class="col-md-3 mb-2">
-                <div class="column">
-                    <div class="product__wrapper py-2">
-                        <img src="{{ asset('images/product/1.png') }}" alt="">
-                        <p>Optimum Nutrition, Gold Standard 100% Whey</p>
-                        <h4 class="product__price">
-                            156 250 сум
-                            <img src="{{ asset('images/product/save.svg') }}" alt="">
-                        </h4>
+                        </div>
                     </div>
                 </div>
-            </div>
+            @endforeach
 
-            <div class="col-md-3 mb-2">
-                <div class="column">
-                    <div class="product__wrapper py-2">
-                        <img src="{{ asset('images/product/1.png') }}" alt="">
-                        <p>Optimum Nutrition, Gold Standard 100% Whey</p>
-                        <h4 class="product__price">
-                            156 250 сум
-                            <img src="{{ asset('images/product/save.svg') }}" alt="">
-                        </h4>
-                    </div>
-                </div>
-            </div>
+{{--            <div class="col-md-3 mb-2">--}}
+{{--                <div class="column">--}}
+{{--                    <div class="product__wrapper py-2">--}}
+{{--                        <img src="{{ asset('images/product/1.png') }}" alt="">--}}
+{{--                        <p>Optimum Nutrition, Gold Standard 100% Whey</p>--}}
+{{--                        <h4 class="product__price">--}}
+{{--                            156 250 сум--}}
+{{--                            <img src="{{ asset('images/product/save.svg') }}" alt="">--}}
+{{--                        </h4>--}}
+{{--                    </div>--}}
+{{--                </div>--}}
+{{--            </div>--}}
+
+{{--            <div class="col-md-3 mb-2">--}}
+{{--                <div class="column">--}}
+{{--                    <div class="product__wrapper py-2">--}}
+{{--                        <img src="{{ asset('images/product/1.png') }}" alt="">--}}
+{{--                        <p>Optimum Nutrition, Gold Standard 100% Whey</p>--}}
+{{--                        <h4 class="product__price">--}}
+{{--                            156 250 сум--}}
+{{--                            <img src="{{ asset('images/product/save.svg') }}" alt="">--}}
+{{--                        </h4>--}}
+{{--                    </div>--}}
+{{--                </div>--}}
+{{--            </div>--}}
+
+{{--            <div class="col-md-3 mb-2">--}}
+{{--                <div class="column">--}}
+{{--                    <div class="product__wrapper py-2">--}}
+{{--                        <img src="{{ asset('images/product/1.png') }}" alt="">--}}
+{{--                        <p>Optimum Nutrition, Gold Standard 100% Whey</p>--}}
+{{--                        <h4 class="product__price">--}}
+{{--                            156 250 сум--}}
+{{--                            <img src="{{ asset('images/product/save.svg') }}" alt="">--}}
+{{--                        </h4>--}}
+{{--                    </div>--}}
+{{--                </div>--}}
+{{--            </div>--}}
+
+{{--            <div class="col-md-3 mb-2">--}}
+{{--                <div class="column">--}}
+{{--                    <div class="product__wrapper py-2">--}}
+{{--                        <img src="{{ asset('images/product/1.png') }}" alt="">--}}
+{{--                        <p>Optimum Nutrition, Gold Standard 100% Whey</p>--}}
+{{--                        <h4 class="product__price">--}}
+{{--                            156 250 сум--}}
+{{--                            <img src="{{ asset('images/product/save.svg') }}" alt="">--}}
+{{--                        </h4>--}}
+{{--                    </div>--}}
+{{--                </div>--}}
+{{--            </div>--}}
 
         </div>
-
 
 
 {{--        конец продукта  --}}
-        <div class="wrapper__main__review">
-            <div class="row">
-                <div class="col-md-12 second__section_text my-3">
-                    <h2>Новости спорта</h2>
-                </div>
 
-                <div class="col-md-4">
-                    <div class="wrapper__review">
-                        <img class="news__img" src="{{ asset('images/product/3.png') }}" alt="">
-                        <a href="#">
-                            Спорт и карантин как мы живём теперь
-                        </a>
-                    </div>
-                </div>
-
-                <div class="col-md-4">
-                    <div class="wrapper__review">
-                        <img class="news__img" src="{{ asset('images/product/3.png') }}" alt="">
-                        <a href="#">
-                            Спорт и карантин как мы живём теперь
-                        </a>
-                    </div>
-                </div>
-
-                <div class="col-md-4">
-                    <div class="wrapper__review">
-                        <img class="news__img" src="{{ asset('images/product/3.png') }}" alt="">
-                        <a href="#">
-                            Спорт и карантин как мы живём теперь
-                        </a>
-                    </div>
-                </div>
-
+        <div class="row">
+            <div class="col-md-12 second__section_text my-3">
+                <h2>Новости спорта</h2>
             </div>
+
+            @foreach($news as $item)
+
+                <div class="col-md-4">
+                    <div class="wrapper__news">
+                        <img class="news__img" src="{{ asset('images/product/3.png') }}" alt="">
+                        <a href="#">
+                            {{ $item->title }}
+                        </a>
+                    </div>
+                </div>
+
+            @endforeach
         </div>
+
         {{--    конец спорта --}}
 
 

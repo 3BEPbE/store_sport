@@ -17,9 +17,9 @@ Auth::routes([
     'verify' => false,
 ]);
 
-Route::get('magaz', function (){
-    return view('custom.index');
-});
+Route::resource('items', 'NewController');
+Route::get('review', 'ReviewController@create')->name('review.user.create');
+Route::post('review/create', 'ReviewController@store')->name('review.user.store');
 
 Route::get('locale/{locale}', 'MainController@changeLocale')->name('locale');
 Route::get('currency/{currencyCode}', 'MainController@changeCurrency')->name('currency');
@@ -47,7 +47,9 @@ Route::middleware(['set_locale'])->group(function () {
                 Route::get('/orders/{order}', 'OrderController@show')->name('orders.show');
             });
 
+
             Route::resource('categories', 'CategoryController');
+            Route::resource('news', 'NewsController');
             Route::resource('products', 'ProductController');
             Route::resource('products/{product}/skus', 'SkuController');
             Route::resource('properties', 'PropertyController');
