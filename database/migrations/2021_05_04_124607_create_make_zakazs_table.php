@@ -15,6 +15,11 @@ class CreateMakeZakazsTable extends Migration
     {
         Schema::create('make_zakazs', function (Blueprint $table) {
             $table->id();
+            $table->integer('user_id');
+            $table->integer('product_id');
+            $table->integer('count');
+            $table->string('name');
+            $table->string('phone');
             $table->timestamps();
         });
     }
