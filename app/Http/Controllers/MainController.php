@@ -10,6 +10,7 @@ use App\Models\Product;
 use App\Models\Sku;
 use App\Models\Subscription;
 use App\News;
+use App\Review;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
 
@@ -44,8 +45,9 @@ class MainController extends Controller
     {
         $skus = Product::paginate(8);
         $news = News::orderBy('updated_at', 'desc')->paginate(3);
+        $reviews = Review::orderBy('updated_at', 'desc')->paginate(4);
 
-        return view('custom.index', compact('skus', 'news'));
+        return view('custom.index', compact('skus', 'news', 'reviews'));
     }
 
     public function categories()

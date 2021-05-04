@@ -17,6 +17,8 @@ Auth::routes([
     'verify' => false,
 ]);
 
+Route::resource('cart', 'CartController');
+
 Route::resource('items', 'NewController');
 Route::get('review', 'ReviewController@create')->name('review.user.create');
 Route::post('review/create', 'ReviewController@store')->name('review.user.store');

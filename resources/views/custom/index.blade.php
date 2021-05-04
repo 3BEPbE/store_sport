@@ -230,69 +230,27 @@
                 <h2>Отзывы</h2>
             </div>
 
-            <div class="col-md-3 my-5">
-                <div class="column">
-                    <div class="review__wrapper py-2">
-                        <img class="review__img_1" src="{{ asset('images/product/review.svg') }}" alt="">
-                        <p>Равным образом, граница обучения кадров позволяет выполнить важные задания по разработке анализа существующих паттернов поведения</p>
-                        <div class="review__star">
-                            <img src="{{ asset('images/product/star.svg') }}" alt="">
-                            <img src="{{ asset('images/product/star.svg') }}" alt="">
-                            <img src="{{ asset('images/product/star.svg') }}" alt="">
-                            <img src="{{ asset('images/product/star.svg') }}" alt="">
-                            <img src="{{ asset('images/product/star.svg') }}" alt="">
+            @foreach($reviews as $item)
+                @if($item->active != 0)
+                    <div class="col-md-3 my-5">
+                        <div class="column">
+                            <div class="review__wrapper py-2">
+                                <img class="review__img_1" src="{{ asset('images/product/review.svg') }}" alt="">
+                                <p>{{ $item->text }}</p>
+                                <div class="review__star">
+                                    <img src="{{ asset('images/product/star.svg') }}" alt="">
+                                    <img src="{{ asset('images/product/star.svg') }}" alt="">
+                                    <img src="{{ asset('images/product/star.svg') }}" alt="">
+                                    <img src="{{ asset('images/product/star.svg') }}" alt="">
+                                    <img src="{{ asset('images/product/star.svg') }}" alt="">
+                                </div>
+                            </div>
                         </div>
                     </div>
-                </div>
-            </div>
+                @endif
 
-            <div class="col-md-3 my-5">
-                <div class="column">
-                    <div class="review__wrapper py-2">
-                        <img class="review__img_1" src="{{ asset('images/product/review.svg') }}" alt="">
-                        <p>Равным образом, граница обучения кадров позволяет выполнить важные задания по разработке анализа существующих паттернов поведения</p>
-                        <div class="review__star">
-                            <img src="{{ asset('images/product/star.svg') }}" alt="">
-                            <img src="{{ asset('images/product/star.svg') }}" alt="">
-                            <img src="{{ asset('images/product/star.svg') }}" alt="">
-                            <img src="{{ asset('images/product/star.svg') }}" alt="">
-                            <img src="{{ asset('images/product/star.svg') }}" alt="">
-                        </div>
-                    </div>
-                </div>
-            </div>
+            @endforeach
 
-            <div class="col-md-3 my-5">
-                <div class="column">
-                    <div class="review__wrapper py-2">
-                        <img class="review__img_1" src="{{ asset('images/product/review.svg') }}" alt="">
-                        <p>Равным образом, граница обучения кадров позволяет выполнить важные задания по разработке анализа существующих паттернов поведения</p>
-                        <div class="review__star">
-                            <img src="{{ asset('images/product/star.svg') }}" alt="">
-                            <img src="{{ asset('images/product/star.svg') }}" alt="">
-                            <img src="{{ asset('images/product/star.svg') }}" alt="">
-                            <img src="{{ asset('images/product/star.svg') }}" alt="">
-                            <img src="{{ asset('images/product/star.svg') }}" alt="">
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-md-3 my-5">
-                <div class="column">
-                    <div class="review__wrapper py-2">
-                        <img class="review__img_1" src="{{ asset('images/product/review.svg') }}" alt="">
-                        <p>Равным образом, граница обучения кадров позволяет выполнить важные задания по разработке анализа существующих паттернов поведения</p>
-                        <div class="review__star">
-                            <img src="{{ asset('images/product/star.svg') }}" alt="">
-                            <img src="{{ asset('images/product/star.svg') }}" alt="">
-                            <img src="{{ asset('images/product/star.svg') }}" alt="">
-                            <img src="{{ asset('images/product/star.svg') }}" alt="">
-                            <img src="{{ asset('images/product/star.svg') }}" alt="">
-                        </div>
-                    </div>
-                </div>
-            </div>
         </div>
         {{--Отзывы конец--}}
 

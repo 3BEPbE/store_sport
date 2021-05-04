@@ -4,7 +4,7 @@
 
 @section('content')
     <div class="col-md-12">
-        <h1>Заказы</h1>
+        <h1>Корзина</h1>
         <table class="table">
             <tbody>
             <tr>
@@ -12,40 +12,50 @@
                     #
                 </th>
                 <th>
-                    Имя
+                    product id
                 </th>
                 <th>
-                    Телефон
+                    user id
                 </th>
                 <th>
-                    Когда отправлен
-                </th>
-                <th>
-                    Сумма
+                    Когда добавлен
                 </th>
                 <th>
                     Действия
                 </th>
             </tr>
             @foreach($orders as $order)
+                @if($order->user_id === Auth::id())
                 <tr>
                     <td>{{ $order->id}}</td>
-                    <td>{{ $order->name }}</td>
-                    <td>{{ $order->phone }}</td>
+                    <td>{{ $order->product_id }}</td>
+                    <td>{{ $order->user_id }}</td>
                     <td>{{ $order->created_at->format('H:i d/m/Y') }}</td>
-                    <td>{{ $order->sum }} {{ $order->currency->symbol }}</td>
                     <td>
-                        <div class="btn-group" role="group">
-                            <a class="btn btn-success" type="button"
-                               @admin
-                               href="{{ route('orders.show', $order) }}"
-                               @else
-                               href="{{ route('person.orders.show', $order) }}"
-                                @endadmin
-                            >Открыть</a>
-                        </div>
+                        <form action="{{ route('cart.destroy', $order->id) }}" method="POST">
+                            @csrf
+                            @method('DELETE')
+
+                            <div class="btn-group" role="group">
+                                <a class="btn btn-success" type="button"
+                                   @admin
+                                   href="{{ route('orders.show', $order) }}"
+                                   @else
+                                   href="{{ route('person.orders.show', $order) }}"
+                                   @endadmin
+                                >Открыть</a>
+
+                                <button
+                                    class="btn btn-danger"
+                                    type="submit"
+                                >Удалить</button>
+
+
+                            </div>
+                        </form>
                     </td>
                 </tr>
+                @endif
             @endforeach
             </tbody>
         </table>

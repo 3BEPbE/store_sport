@@ -42,8 +42,11 @@
                                 {{ $item->price }} сум
                             </h4>
                             @if(true)
-                                <form action="{{ route('basket-add', $item->id) }}" method="post">
+                                <form action="{{ route('cart.store') }}" method="post">
                                     @csrf
+
+                                    <input type="hidden" name="product_id" value="{{ $item->id }}">
+                                    <input type="hidden" name="user_id" value="{{ Auth::id() }}">
 
                                     <button type="submit" class="btn btn-info" style="background-color: rgba(255, 92, 41, 1); color: white">
                                         Добавить в корзину

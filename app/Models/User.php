@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Cart;
 use App\Review;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -37,6 +38,11 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function cart()
+    {
+        return $this->hasOne(Cart::class);
+    }
 
     public function reviews()
     {
